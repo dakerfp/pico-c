@@ -2,6 +2,17 @@
 
 #include <ncurses.h>
 
+sprite_t sprs = {
+	0, 0, 0, 0, 0, 0, 0, 0,
+	0, 1, 1, 2, 2, 1, 1, 0,
+	0, 2, 2, 1, 1, 2, 2, 0,
+	0, 1, 1, 2, 2, 1, 1, 0,
+	0, 2, 2, 1, 1, 2, 2, 0,
+	0, 1, 1, 2, 2, 1, 1, 0,
+	0, 2, 2, 1, 1, 2, 2, 0,
+	0, 0, 0, 0, 0, 0, 0, 0
+};
+
 int main()
 {
 	color_t black = 0;
@@ -31,6 +42,14 @@ int main()
 	clear();
 	swap();
 	getch();
+
+	cls(0);
+	spritesheet(&sprs);
+	spr((struct point_t){22, 22}, 0);
+	spr((struct point_t){23, 32}, 0);
+	swap();
+	getch();
+
 	endwin();
 
 	return 0;

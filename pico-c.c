@@ -12,6 +12,7 @@ static const struct rect_t screen_rect = {
 };
 
 static color_t __pbuff[SCREEN_HEIGHT][SCREEN_WIDTH];
+static sprite_t *__spritesheet;
 
 static struct rect_t intersect(struct rect_t a, struct rect_t b)
 {
@@ -136,6 +137,29 @@ int line(struct point_t a, struct point_t b, color_t col)
 		}
     }
 
+	return 0;
+}
+
+int spritesheet(sprite_t sprts[])
+{
+	// XXX: copy sprtesheet to avoid corruption
+	__spritesheet = sprts;
+	return 0;
+}
+
+int spr(struct point_t p, int spr)
+{
+	int s = 0;
+	int i, j;
+	for (i = 0; i < 8; i++) {
+		for (j = 0; j < 8; j++) {
+			pset(p, __spritesheet[spr][s]);
+			++p.x;
+			++s;
+		}
+		p.y += 1;
+		p.x -= 8;
+	}
 	return 0;
 }
 
