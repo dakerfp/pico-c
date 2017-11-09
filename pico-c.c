@@ -6,6 +6,11 @@
 #define SIGN(a) (((a) > 0) ? 1 : \
 	(((a) < 0) ? -1 : 0))
 
+static const struct rect_t screen_rect = {
+	{0, 0},
+	{SCREEN_WIDTH, SCREEN_HEIGHT}
+};
+
 static color_t __pbuff[SCREEN_HEIGHT][SCREEN_WIDTH];
 
 static struct rect_t intersect(struct rect_t a, struct rect_t b)

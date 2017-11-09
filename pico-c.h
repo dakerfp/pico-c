@@ -15,13 +15,6 @@ typedef char color_t;
 struct point_t { int x, y; };
 struct rect_t { struct point_t aa, bb; };
 
-// CONSTANTS
-
-static const struct rect_t screen_rect = {
-	{0, 0},
-	{SCREEN_WIDTH, SCREEN_HEIGHT}
-};
-
 // PUBLIC FUNCTIONS
 
 int cls(color_t col);
