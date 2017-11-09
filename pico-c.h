@@ -21,6 +21,7 @@ int cls(color_t col);
 int pset(struct point_t p, color_t col);
 color_t pget(struct point_t p);
 int rect(struct rect_t r, color_t col);
+int rectfill(struct rect_t r, color_t col);
 int line(struct point_t a, struct point_t b, color_t col);
 int swap();
 

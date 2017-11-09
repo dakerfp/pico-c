@@ -10,9 +10,9 @@ int main()
 	color_t blue = 4;
 
 	cls(black);
-	rect((struct rect_t){{3, 3},{SCREEN_WIDTH - 3, SCREEN_HEIGHT - 3}}, red);
+	rectfill((struct rect_t){{3, 3},{SCREEN_WIDTH - 3, SCREEN_HEIGHT - 3}}, red);
 	rect((struct rect_t){{6, 6},{SCREEN_WIDTH - 6, SCREEN_HEIGHT - 6}}, green);
-	rect((struct rect_t){{9, 9},{SCREEN_WIDTH - 9, SCREEN_HEIGHT - 9}}, blue);
+	rectfill((struct rect_t){{9, 9},{SCREEN_WIDTH - 9, SCREEN_HEIGHT - 9}}, blue);
 	line(
 		(struct point_t){9, 9},
 		(struct point_t){SCREEN_WIDTH - 9, SCREEN_HEIGHT - 9},

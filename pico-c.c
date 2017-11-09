@@ -63,7 +63,38 @@ color_t pget(struct point_t p)
 	return __pbuff[p.y][p.x];
 }
 
+static void _hline(int from, int to, int y, color_t col)
+{
+	if (y < 0)
+		return;
+	if (y >= screen_rect.bb.y)
+		return;
+
+	for (int i = MAX(0, from); i < MIN(to, screen_rect.bb.y); i++)
+		__pbuff[y][i] = col;
+}
+
+static void _vline(int from, int to, int x, color_t col)
+{
+	if (x < 0)
+		return;
+	if (x >= screen_rect.bb.x)
+		return;
+
+	for (int i = MAX(0, from); i < MIN(to, screen_rect.bb.x); i++)
+		__pbuff[i][x] = col;
+}
+
 int rect(struct rect_t r, color_t col)
+{
+	_hline(r.aa.x, r.bb.x, r.aa.y, col);
+	_hline(r.aa.x, r.bb.x, r.bb.y, col);
+	_vline(r.aa.y, r.bb.y, r.aa.x, col);
+	_vline(r.aa.y, r.bb.y, r.bb.x, col);
+	return 0;
+}
+
+int rectfill(struct rect_t r, color_t col)
 {
 	int i, j;
 	r = intersect(screen_rect, r);
