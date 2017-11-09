@@ -29,15 +29,6 @@ static bool rect_is_valid(struct rect_t r)
 		(r.aa.y <= r.bb.y);
 }
 
-static int put(struct point_t p, color_t col) {
-	if (p.x < 0) return E_NO_DRAW;
-	if (p.y < 0) return E_NO_DRAW;
-	if (p.x >= screen_rect.bb.x) return E_NO_DRAW;
-	if (p.y >= screen_rect.bb.y) return E_NO_DRAW;
-	__pbuff[p.y][p.x] = col;
-	return 0;
-}
-
 static color_t __pbuff[SCREEN_HEIGHT][SCREEN_WIDTH];
 
 // PUBLIC API
@@ -51,6 +42,25 @@ int cls(color_t col)
 		}
 	}
 	return 0;
+}
+
+int pset(struct point_t p, color_t col)
+{
+	if (p.x < 0) return E_NO_DRAW;
+	if (p.y < 0) return E_NO_DRAW;
+	if (p.x >= screen_rect.bb.x) return E_NO_DRAW;
+	if (p.y >= screen_rect.bb.y) return E_NO_DRAW;
+	__pbuff[p.y][p.x] = col;
+	return 0;
+}
+
+color_t pget(struct point_t p)
+{
+	if (p.x < 0) return 0;
+	if (p.y < 0) return 0;
+	if (p.x >= screen_rect.bb.x) return 0;
+	if (p.y >= screen_rect.bb.y) return 0;
+	return __pbuff[p.y][p.x];
 }
 
 int rect(struct rect_t r, color_t col)
@@ -87,7 +97,7 @@ int line(struct point_t a, struct point_t b, color_t col)
     struct point_t p;
     p.y = a.y;
     for (p.x = a.x; p.x <= b.x; ++p.x) {
-		put(p, col);
+		pset(p, col);
 		error += deltaerr;
 		while (error >= 0.5) {
 			p.y += signy;
