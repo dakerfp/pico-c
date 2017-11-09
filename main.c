@@ -13,6 +13,16 @@ int main()
 	rect((struct rect_t){{3, 3},{screen_rect.bb.x - 3, screen_rect.bb.y - 3}}, red);
 	rect((struct rect_t){{6, 6},{screen_rect.bb.x - 6, screen_rect.bb.y - 6}}, green);
 	rect((struct rect_t){{9, 9},{screen_rect.bb.x - 9, screen_rect.bb.y - 9}}, blue);
+	line(
+		(struct point_t){9, 9},
+		(struct point_t){screen_rect.bb.x - 9, screen_rect.bb.y - 9},
+		red
+	);
+	line(
+		(struct point_t){screen_rect.bb.x - 9, 9},
+		(struct point_t){9, screen_rect.bb.y - 9},
+		red
+	);
 
 	initscr();
 	start_color();
