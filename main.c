@@ -15,11 +15,17 @@ sprite_t sprs = {
 
 int main()
 {
+	initscr();
+	start_color();
+	for (int i = 0; i < 8; ++i)
+		init_pair(i + 1, i, i);
+
 	color_t black = 0;
 	color_t red = 1;
 	color_t green = 2;
 	color_t blue = 4;
 
+	// frame 1
 	cls(black);
 	rectfill((struct rect_t){{3, 3},{SCREEN_WIDTH - 3, SCREEN_HEIGHT - 3}}, red);
 	rect((struct rect_t){{6, 6},{SCREEN_WIDTH - 6, SCREEN_HEIGHT - 6}}, green);
@@ -34,22 +40,18 @@ int main()
 		(struct point_t){9, SCREEN_HEIGHT - 9},
 		red
 	);
-
-	initscr();
-	start_color();
-	for (int i = 0; i < 8; ++i)
-		init_pair(i + 1, i, i);
-	clear();
 	swap();
+
 	getch();
 
+	// frame 2
 	cls(0);
 	spritesheet(&sprs);
 	spr((struct point_t){22, 22}, 0);
 	spr((struct point_t){23, 32}, 0);
 	swap();
-	getch();
 
+	getch();
 	endwin();
 
 	return 0;
